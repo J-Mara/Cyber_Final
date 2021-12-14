@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <div class="center" style="width:100%; margin-top: 200px">
+        {% for message in get_flashed_messages() %}
+            {{ message }}
+            {% if not loop.last %} 
+                <br>
+            {% endif %}
+        {% endfor %} 
+    </div>
+    
+    <div class="center" style="width:100%" >
+        <form method="POST">
+            Username: <br>
+            <input type="text" name="username" id="username">
+            <input name="submit" type="submit" value="Check Now">
+        </form>
+    </div>
+    <div class="center" style="width:100%; margin-top: 20px">
+        Check here if your username is taken!
+    </div>
+</html>
