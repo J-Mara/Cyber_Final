@@ -32,6 +32,8 @@ def login_required(view):
 
     return wrapped_view
 
+
+# handles the login. A successful login redirects the user to the home page. 
 @bp.route("/login", methods=("GET", "POST"))
 def login():
     if request.method == "POST":
@@ -51,10 +53,14 @@ def login():
 
     return render_template("login.html")
 
+
+# home webpage. Contains the vigenere cipher text and hidden key. 
 @bp.route("/home", methods=("GET",))
 def home():
     return render_template("home.html")
 
+
+# checks if a username exists. Has an intentional sql error.
 @bp.route("/does-my-username-exist", methods=("GET", "POST"))
 def check_username():
     if request.method == "POST":
@@ -73,6 +79,8 @@ def check_username():
 
     return render_template("check username.html")
 
+
+# adds a user to the database. 
 @bp.route("/add-user", methods=("GET", "POST"))
 def add_user():
     if request.method == "POST":
