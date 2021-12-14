@@ -10,6 +10,7 @@ from flaskr.db import get_db
 bp = Blueprint('routes', __name__)
 
 
+# before each request it checks if the user is logged in, and if they are, it saves it to g.user, as well as all the other user information. 
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -88,7 +89,7 @@ def add_user():
         db = get_db()
         db.execute(
             'INSERT INTO user (username, password) VALUES (?, ?)',
-            (form["username"], form["password"])
+            (form["username"], generate_password_hash(form["password"]))
         )
 
         db.commit()
