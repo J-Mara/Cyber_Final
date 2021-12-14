@@ -50,7 +50,7 @@ def login():
             flash("Error: password incorrect for user.")
         else:
             session["user_id"] = user["id"]
-            return redirect(url_for("website.home"))
+            return redirect(url_for("routes.home"))
 
     return render_template("login.html")
 
@@ -95,5 +95,7 @@ def add_user():
         db.commit()
 
         flash("User successfully added.")
+
+        return redirect(url_for("routes.login"))
     
     return render_template("add user.html")
