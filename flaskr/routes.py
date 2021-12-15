@@ -23,11 +23,12 @@ def load_logged_in_user():
         ).fetchone()
 
 
+# disallows access to pages unless the user is logged in.
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
         if g.user is None:
-            return redirect(url_for('auth.login'))
+            return redirect(url_for('routes.login'))
 
         return view(**kwargs)
 
@@ -55,8 +56,9 @@ def login():
     return render_template("login.html")
 
 
-# home webpage. Contains the vigenere cipher text and hidden key. 
+# home webpage. Contains the vigenere cipher text and hidden key. The user is required to be logged in before accessing it. 
 @bp.route("/home", methods=("GET",))
+@login_required
 def home():
     return render_template("home.html")
 
@@ -99,3 +101,9 @@ def add_user():
         return redirect(url_for("routes.login"))
     
     return render_template("add user.html")
+
+# clears the session for testing purposes. Will be deleted before finalizing the project. 
+@bp.route("/clear-session", methods=("GET",))
+def clear_session():
+    session.clear()
+    return redirect(url_for("routes.login"))
