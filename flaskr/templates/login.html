@@ -1,6 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% extends 'base.html' %}
+
+{% block css %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% endblock %} 
+
+{% block body %} 
     <div class="center" style="width:100%; margin-top: 200px">
         {% for message in get_flashed_messages() %}
             {{ message }}
@@ -33,4 +37,5 @@
     <div class="center" style="width:100%; margin-top: 20px">
         If you are not sure if your username is taken, please visit &nbsp; <a href="{{ url_for('routes.check_username') }}"> this page</a>
     </div>
-</html>
+
+{% endblock %} 

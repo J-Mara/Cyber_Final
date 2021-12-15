@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='base.css') }}">
+        {% block css %} {% endblock %} 
+        {% block javascript %} {% endblock %} 
+    </head>
+    <header>
+        <ul>
+            <li><a href="{{ url_for('routes.add_user') }}">Add User</a></li>
+        </ul>
+    </header>
+    <body>
+        {% block body %} {% endblock %} 
+    </body>
+</html>
+

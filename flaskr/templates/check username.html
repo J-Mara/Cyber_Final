@@ -1,6 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+{% extends 'base.html' %}
+
+{% block body %} 
     <div class="center" style="width:100%; margin-top: 200px">
         {% for message in get_flashed_messages() %}
             {{ message }}
@@ -20,4 +20,4 @@
     <div class="center" style="width:100%; margin-top: 20px">
         Check here if your username is taken!
     </div>
-</html>
+{% endblock %}
