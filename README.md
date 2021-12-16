@@ -5,5 +5,11 @@ We are creating an intentionally vulnerable website. Users will download a virtu
 
 Daily log:
 -----
+12/16/21:
+Maret Rudin-Aulenbach: I finalized the header, 
+
+12/15/21:
+Maret Rudin-Aulenbach: I added a login requirement to see the homepage, a vigenere cipher puzzle, html templates, and started work on the header.
+
 12/14/21:
 Maret Rudin-Aulenbach: fixed bugs, caught Jordan up on project (he missed a day), made small changes (such as adding password hashing), and added comments
