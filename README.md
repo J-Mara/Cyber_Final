@@ -6,7 +6,7 @@ We are creating an intentionally vulnerable website. Users will download a virtu
 Daily log:
 -----
 12/16/21:
-Maret Rudin-Aulenbach: I finalized the header, 
+Maret Rudin-Aulenbach: I finalized the header and worked on the intentional sql injection vulnerability.
 
 12/15/21:
 Maret Rudin-Aulenbach: I added a login requirement to see the homepage, a vigenere cipher puzzle, html templates, and started work on the header.
