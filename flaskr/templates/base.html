@@ -5,13 +5,15 @@
         {% block css %} {% endblock %} 
         {% block javascript %} {% endblock %} 
     </head>
-    <header id="header">
-        <ul width="100%">
-            <li><a href="{{ url_for('routes.add_user') }}">Add User</a></li>
-            <li><a href="{{ url_for('routes.check_username') }}">Does My Username Exist?</a></li>
-            <li><a href="{{ url_for('routes.login') }}">Login</a></li>
-            <li><a href="{{ url_for('routes.home') }}">Home</a></li>
-        </ul>
+    <header id="header" class="center">
+        <div style="width:75%; height: 100%">
+            <ul width="100%">
+                <li><a href="{{ url_for('routes.add_user') }}">Add User</a></li>
+                <li><a href="{{ url_for('routes.check_username') }}">Does My Username Exist?</a></li>
+                <li><a href="{{ url_for('routes.login') }}">Login</a></li>
+                <li><a href="{{ url_for('routes.home') }}">Home</a></li>
+            </ul>
+        </div>
     </header>
     <body>
         {% block body %} {% endblock %} 
