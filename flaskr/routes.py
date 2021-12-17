@@ -69,16 +69,17 @@ def check_username():
     if request.method == "POST":
         form = request.form.to_dict()
         db = get_db()
-        user = db.execute(
+        print('SELECT username FROM user WHERE username = "{}"'.format(form["username"]))
+        user = db.executescript(
             'SELECT username FROM user WHERE username = "{}"'.format(form["username"])
         ).fetchone()
         # user = dict(user)
         if user:
-            user = dict(zip(user.keys(), user)) 
-            print(user)
-            flash(", ".join("The {} {} exists".format(key, value) for key, value in user.items()))
+            flash("The username {} exists".format(user["username"]))
+            # user = dict(zip(user.keys(), user)) 
+            # flash(", ".join("The {} {} exists".format(key, value) for key, value in user.items()))
         else:
-            flash("username does not exist.")
+            flash("The username {} does not exist".format(form["username"]))
 
     return render_template("check username.html")
 
