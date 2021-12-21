@@ -57,10 +57,14 @@ def login():
 
 
 # home webpage. Contains the vigenere cipher text and hidden key. The user is required to be logged in before accessing it. 
-@bp.route("/home", methods=("GET",))
+@bp.route("/home", methods=("GET", "POST"))
 @login_required
 def home():
-    return render_template("home.html")
+    session["hint"] = "Go to /download.png."
+    if request.method == "POST":
+        print(request.form.to_dict())
+        return render_template("home.html", value=request.form["value"])
+    return render_template("home.html", value="Change Value")
 
 
 # checks if a username exists. Has an intentional sql error.
