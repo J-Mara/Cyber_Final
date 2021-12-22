@@ -11,6 +11,9 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
+    # turns SESSION_COOKIE_HTTPONLY off so that the XSS injection works
+    app.config["SESSION_COOKIE_HTTPONLY"] = False
+
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)

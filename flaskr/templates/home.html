@@ -9,8 +9,8 @@
             <!-- vigenere -->
         </div>
     </div>
-    <div class="center" method="POST">
-        <form>
+    <div class="center">
+        <form action="{{ url_for('routes.home') }}" method="POST">
             <input type="text" name="value" id="value">
             <input name="submit" type="submit" value={{ value }}>
         </form>

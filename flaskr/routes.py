@@ -58,11 +58,10 @@ def login():
 
 # home webpage. Contains the vigenere cipher text and hidden key. The user is required to be logged in before accessing it. 
 @bp.route("/home", methods=("GET", "POST"))
-@login_required
+# @login_required
 def home():
     session["hint"] = "Go to /download.png."
     if request.method == "POST":
-        print(request.form.to_dict())
         return render_template("home.html", value=request.form["value"])
     return render_template("home.html", value="Change Value")
 
