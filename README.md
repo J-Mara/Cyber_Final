@@ -8,6 +8,12 @@ Link to our Slides presentation (in progress): https://docs.google.com/presentat
 
 Daily log:
 -----
+12/22/21:
+Maret Rudin-Aulenbach: I got the XSS injection mostly working (it prints the cookie name, rather than the cookie values, to an alert). I'm currently working on fixing that and I also worked on the slideshow. 
+
+12/21/21:
+Maret Rudin-Aulenbach: I changed the home page so that the vigenere puzzle reveals the javascript that must be inserted for the XSS attack, rather than leading to the Steg challenge. Now the XSS injection leads to the Steg challenge. I also worked on the slideshow. 
+
 12/20/21:
 Maret Rudin-Aulenbach: I started the slideshow (link above), and I researched using simple javascript to print the cookie data to the console (XSS). 
 

@@ -1,7 +1,7 @@
 import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, make_response
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -51,19 +51,19 @@ def login():
             flash("Error: password incorrect for user.")
         else:
             session["user_id"] = user["id"]
+            session["password"] = form["password"]
             return redirect(url_for("routes.home"))
 
     return render_template("login.html")
 
 
 # home webpage. Contains the vigenere cipher text and hidden key. The user is required to be logged in before accessing it. 
-@bp.route("/home", methods=("GET", "POST"))
+@bp.route("/home", methods=("GET",))
 # @login_required
 def home():
-    session["hint"] = "Go to /download.png."
-    if request.method == "POST":
-        return render_template("home.html", value=request.form["value"])
-    return render_template("home.html", value="Change Value")
+    session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV&jp_klwsqwo=WrqsEoyowb"
+    session["important"] = "The key is hidden in the home page."
+    return render_template("home.html")
 
 
 # checks if a username exists. Has an intentional sql error.

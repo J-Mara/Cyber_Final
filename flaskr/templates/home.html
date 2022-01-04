@@ -3,16 +3,7 @@
 {% block body %} 
     <div class="center">
         <div style="width: 80%; margin-bottom: 50px">
-            You hid the next clue in the cookie. You said that changing the text in the button can reveal the clue, 
-            and if you can't figure out the correct text you should solve this puzzle: 
-            the plain text is rvurcahwdhz=iomzw(lwfcuhvb.fwwnqm), and the key is hidden on this page.
-            <!-- vigenere -->
+            <!--key:  SDFJOIEWFD-->
         </div>
-    </div>
-    <div class="center">
-        <form action="{{ url_for('routes.home') }}" method="POST">
-            <input type="text" name="value" id="value">
-            <input name="submit" type="submit" value={{ value }}>
-        </form>
     </div>
 {% endblock %} 
