@@ -50,7 +50,9 @@ def login():
         elif not check_password_hash(user["password"], form["password"]):
             flash("Error: password incorrect for user.")
         else:
+            session.clear()
             session["user_id"] = user["id"]
+            session["username"] = user["username"]
             session["password"] = form["password"]
             return redirect(url_for("routes.home"))
 
@@ -59,11 +61,14 @@ def login():
 
 # home webpage. Contains the vigenere cipher text and hidden key. The user is required to be logged in before accessing it. 
 @bp.route("/home", methods=("GET",))
-# @login_required
+@login_required
 def home():
-    session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV&jp_klwsqwo=WrqsEoyowb"
-    session["important"] = "The key is hidden in the home page."
-    return render_template("home.html")
+    if session["username"] == "adm":
+        session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV&jp_klwsqwo=WrqsEoyowb"
+        session["important"] = "The key is hidden in the home page."
+        return render_template("home.html")
+    else:
+        return redirect(url_for('website.login'))
 
 
 # checks if a username exists. Has an intentional sql error.
@@ -73,7 +78,7 @@ def check_username():
         form = request.form.to_dict()
         db = get_db()
         print('SELECT username FROM user WHERE username = "{}"'.format(form["username"]))
-        user = db.executescript(
+        user = db.execute(
             'SELECT username FROM user WHERE username = "{}"'.format(form["username"])
         ).fetchone()
         # user = dict(user)
