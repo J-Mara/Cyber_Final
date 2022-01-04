@@ -4,10 +4,14 @@ We are creating an intentionally vulnerable website. Users will download a virtu
 
 Link to our Slides presentation: https://docs.google.com/presentation/d/1CqIaGt_E0U4ZZw52E8QZOd5UYJeimNgTgbVvbTkd-HA/edit?usp=sharing. 
 
+Link to download our virtual machine (with project installed): https://drive.google.com/file/d/1m411BEUqBFGYlfM-qyO06kDmAeo2lHrt/view?usp=sharing
+
+Instructions: open the terminal. Input cd Downloads/'Cybersecurity Project', input . linux_venv/bin/activate, and input make. Then open firefox and go to http://127.0.0.1:5000/login. If you need to install any tools to complete these challenges, the sudo password is 123. 
+
 Daily log:
 -----
 1/4/22:
-Maret Rudin-Aulenbach: I removed the XSS injection and replaced it with looking at Session cookie information through Inspect Element and the Network tab. I also did a lot of bug fixing on that (for some reason if I add too much information to session it is no longer encrypted in base64, despite not being over the 4kb limit; not sure why, and I couldn't figure it out). And I worked on our slides, added an admin login requirement to access the home page, and finished the virtual machine. 
+Maret Rudin-Aulenbach: I removed the XSS injection and replaced it with looking at Session cookie information through Inspect Element and the Network tab. I also did a lot of bug fixing on that (for some reason if I add too much information to session it is no longer encrypted in base64, despite not being over the 4kb limit; not sure why, and I couldn't figure it out). And I finished our slides, added an admin login requirement to access the home page, and finished the virtual machine. 
 
 12/22/21:
 Maret Rudin-Aulenbach: I got the XSS injection mostly working (it prints the cookie name, rather than the cookie values, to an alert). I'm currently working on fixing that and I also worked on the slideshow. 
