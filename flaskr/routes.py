@@ -52,8 +52,12 @@ def login():
         else:
             session.clear()
             session["user_id"] = user["id"]
-            session["username"] = user["username"]
-            session["password"] = form["password"]
+            # for some reason having over a certain number of character in session - regardless of if it is in the keys or values - 
+            # prevents the cookie from being decodable in base64. Unfortunately I need to leave the username and password out of the
+            # cookie so that the cipher text and key hint can be in the cookie. 
+            # session["username"] = user["username"]
+            # session["password"] = form["password"]
+            # the adm password is qwe123
             return redirect(url_for("routes.home"))
 
     return render_template("login.html")
@@ -63,12 +67,13 @@ def login():
 @bp.route("/home", methods=("GET",))
 @login_required
 def home():
-    if session["username"] == "adm":
-        session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV&jp_klwsqwo=WrqsEoyowb"
-        session["important"] = "The key is hidden in the home page."
+    if session["user_id"] == 6:
+        session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV"
+        # session["important"] = "The key is hidden in the home page"
+        session["nb"] = "The key is hidden in the home page"
         return render_template("home.html")
     else:
-        return redirect(url_for('website.login'))
+        return redirect(url_for('routes.login'))
 
 
 # checks if a username exists. Has an intentional sql error.
@@ -84,8 +89,6 @@ def check_username():
         # user = dict(user)
         if user:
             flash("The username {} exists".format(user["username"]))
-            # user = dict(zip(user.keys(), user)) 
-            # flash(", ".join("The {} {} exists".format(key, value) for key, value in user.items()))
         else:
             flash("The username {} does not exist".format(form["username"]))
 
@@ -98,6 +101,12 @@ def add_user():
     if request.method == "POST":
         form = request.form.to_dict()
         db = get_db()
+
+        # I didn't put a unique constraint on the username, because I thought perhaps there could be 
+        # some sort of exploit using that. Such as adding a user with the username adm and password 123 and logging in as that user.
+        # however /login is written to fetch the first instance of an account with the username adm, which is the original password
+        # I selected from the rockyou list. 
+
         db.execute(
             'INSERT INTO user (username, password) VALUES (?, ?)',
             (form["username"], generate_password_hash(form["password"]))

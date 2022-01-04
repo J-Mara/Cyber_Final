@@ -1,13 +1,14 @@
 # Cyber_Final
 
-We are creating an intentionally vulnerable website. Users will download a virtual machine containing the website. They then must hack into the website through one of two methods (sql injections or hyrda). Inside they find a vigenere cipher, which leads them to a hidden directory containing an image. They download that image, use steganography to find the hidden link, and follow it to the message. We will leave hints along the way as for what to do. We are also considering adding a hacking tool that we haven't learned in class. 
+We are creating an intentionally vulnerable website. Users will download a virtual machine containing the website. They then must hack into the website through one of two methods (hydra or sql injections). They then must look at the information inside the cookie, using Inspect Element and the Network tab to do so, and decrypt it using a base64 decoder. Inside the decrypted cookie is the cipher text, and a hint that the key is hidden in the home page (it's in an html comment). The user will then solve the vigenere cipher and follow the link to the thank you page. 
 
-12/20/21 update: we are considering using basic XSS to steal cookie information, which will contain the link to the next problem. We know that most of the class does not know javascript, so we will supply them with basic commands to print the cookie data which can be followed without knowing javascript itself. 
-
-Link to our Slides presentation (in progress): https://docs.google.com/presentation/d/1CqIaGt_E0U4ZZw52E8QZOd5UYJeimNgTgbVvbTkd-HA/edit?usp=sharing. 
+Link to our Slides presentation: https://docs.google.com/presentation/d/1CqIaGt_E0U4ZZw52E8QZOd5UYJeimNgTgbVvbTkd-HA/edit?usp=sharing. 
 
 Daily log:
 -----
+1/4/22:
+Maret Rudin-Aulenbach: I removed the XSS injection and replaced it with looking at Session cookie information through Inspect Element and the Network tab. I also did a lot of bug fixing on that (for some reason if I add too much information to session it is no longer encrypted in base64, despite not being over the 4kb limit; not sure why, and I couldn't figure it out). And I worked on our slides, added an admin login requirement to access the home page, and finished the virtual machine. 
+
 12/22/21:
 Maret Rudin-Aulenbach: I got the XSS injection mostly working (it prints the cookie name, rather than the cookie values, to an alert). I'm currently working on fixing that and I also worked on the slideshow. 
 
