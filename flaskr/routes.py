@@ -10,24 +10,13 @@ from flaskr.db import get_db
 bp = Blueprint('routes', __name__)
 
 
-# before each request it checks if the user is logged in, and if they are, it saves it to g.user, as well as all the other user information. 
-@bp.before_app_request
-def load_logged_in_user():
-    user_id = session.get('user_id')
-
-    if user_id is None:
-        g.user = None
-    else:
-        g.user = get_db().execute(
-            'SELECT * FROM user WHERE id = ?', (user_id,)
-        ).fetchone()
-
+# credit: the following function (login_required) is from the flask tutorial and slightly altered.
 
 # disallows access to pages unless the user is logged in.
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None:
+        if not "user_id" in session:
             return redirect(url_for('routes.login'))
 
         return view(**kwargs)
@@ -52,9 +41,8 @@ def login():
         else:
             session.clear()
             session["user_id"] = user["id"]
-            # for some reason having over a certain number of character in session - regardless of if it is in the keys or values - 
-            # prevents the cookie from being decodable in base64. Unfortunately I need to leave the username and password out of the
-            # cookie so that the cipher text and key hint can be in the cookie. 
+            # these two values are not included in the session because that causes the session to compress, which adds needless
+            # complexity for the students completing the cookie stealing challenge. 
             # session["username"] = user["username"]
             # session["password"] = form["password"]
             # the adm password is qwe123
@@ -82,9 +70,9 @@ def check_username():
     if request.method == "POST":
         form = request.form.to_dict()
         db = get_db()
-        print('SELECT username FROM user WHERE username = "{}"'.format(form["username"]))
+        print("SELECT username FROM user WHERE username = {}".format(form["username"]))
         user = db.execute(
-            'SELECT username FROM user WHERE username = "{}"'.format(form["username"])
+            "SELECT username FROM user WHERE username = {}".format(form["username"])
         ).fetchone()
         # user = dict(user)
         if user:
