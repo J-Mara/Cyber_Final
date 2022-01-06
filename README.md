@@ -1,17 +1,23 @@
 # Cyber_Final
 
-We are creating an intentionally vulnerable website. Users will download a virtual machine containing the website. They then must hack into the website through one of two methods (hydra or sql injections). They then must look at the information inside the cookie, using Inspect Element and the Network tab to do so, and decrypt it using a base64 decoder. Inside the decrypted cookie is the cipher text, and a hint that the key is hidden in the home page (it's in an html comment). The user will then solve the vigenere cipher and follow the link to the thank you page. 
+We have created an intentionally vulnerable website. First users must hack into the website through one of two methods (sql injection or hydra). They then must look at the information inside the cookie, using Inspect Element and the Network tab to do so, and decrypt it using a base64 decoder. Inside the decrypted cookie is a cipher text, and a hint that the key is hidden in the home page. The user will then solve the vigenere cipher and follow the link to the thank you page. If you need help, check the google slides linked below.
 
 Link to our Slides presentation: https://docs.google.com/presentation/d/1CqIaGt_E0U4ZZw52E8QZOd5UYJeimNgTgbVvbTkd-HA/edit?usp=sharing. 
 
-Link to download our virtual machine (with project installed): https://drive.google.com/file/d/1m411BEUqBFGYlfM-qyO06kDmAeo2lHrt/view?usp=sharing
+OUTDATED: Link to download our virtual machine (with project installed): https://drive.google.com/file/d/1m411BEUqBFGYlfM-qyO06kDmAeo2lHrt/view?usp=sharing. Previously I thought we had to share the project on a virtual machine because it was an intentionally vulnerable website, however a previous group had students git clone the repository and that worked fine. 
 
-Instructions: open the terminal. Input cd Downloads/'Cybersecurity Project', input . linux_venv/bin/activate, and input make. Then open firefox and go to http://127.0.0.1:5000/login. If you need to install any tools to complete these challenges, the sudo password is 123. 
+Instructions: Inside WSL or a linux based terminal, enter 'git clone https://github.com/J-Mara/Cyber_Final.git' and go to the 'Cyber_Final' directory. Then create a virtual environment using 'python3 -m venv venv', type '. venv/bin/activate' to activate it, and type 'pip install -r requirements'. Finally, enter 'make', open firefox, and go to http://127.0.0.1:5000/login. 
+
+Assignment: Submit the result of the vigenere cipher (it is a link). 
 
 Daily log:
 -----
+
+1/5/22:
+Maret Rudin-Aulenbach: I made small changes to the sql code, added requirements.txt (I tried to include the linux virtualenv in the repository however git add continued to throw errors), and I updated the website description and instructions.
+
 1/4/22:
-Maret Rudin-Aulenbach: I removed the XSS injection and replaced it with looking at Session cookie information through Inspect Element and the Network tab. I also did a lot of bug fixing on that (for some reason if I add too much information to session it is no longer encrypted in base64, despite not being over the 4kb limit; not sure why, and I couldn't figure it out). And I finished our slides, added an admin login requirement to access the home page, and finished the virtual machine. 
+Maret Rudin-Aulenbach: I removed the XSS injection and replaced it with looking at Session cookie information through Inspect Element and the Network tab. I also did a lot of bug fixing on that (for some reason if I add too much information to session it is no longer encrypted in base64, despite not being over the 4kb limit; not sure why, and I couldn't figure it out. UPDATE: it is because itsdangerous compresses the cookie). And I finished our slides, added an admin login requirement to access the home page, and finished the virtual machine. 
 
 12/22/21:
 Maret Rudin-Aulenbach: I got the XSS injection mostly working (it prints the cookie name, rather than the cookie values, to an alert). I'm currently working on fixing that and I also worked on the slideshow. 

@@ -56,7 +56,7 @@ def login():
 @login_required
 def home():
     if session["user_id"] == 6:
-        session["cipher text"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV"
+        session["vigenere cipher"] = "zwyyg://eas.drmwzks.ksi/bdlfm?e=rYa4s9BjPfV"
         # session["important"] = "The key is hidden in the home page"
         session["nb"] = "The key is hidden in the home page"
         return render_template("home.html")
@@ -70,9 +70,9 @@ def check_username():
     if request.method == "POST":
         form = request.form.to_dict()
         db = get_db()
-        print("SELECT username FROM user WHERE username = {}".format(form["username"]))
-        user = db.execute(
-            "SELECT username FROM user WHERE username = {}".format(form["username"])
+        print("SELECT username FROM user WHERE username = '{}'".format(form["username"]))
+        user = db.executescript(
+            "SELECT username FROM user WHERE username = '{}'".format(form["username"])
         ).fetchone()
         # user = dict(user)
         if user:
