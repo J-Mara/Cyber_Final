@@ -5,6 +5,8 @@ from flask import current_app, g
 from flask.cli import with_appcontext
 
 
+# credit: All the code in this file is from the official flask website. It handles the connection to the database. 
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(

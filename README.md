@@ -6,7 +6,13 @@ Link to our Slides presentation: https://docs.google.com/presentation/d/1CqIaGt_
 
 OUTDATED: Link to download our virtual machine (with project installed): https://drive.google.com/file/d/1m411BEUqBFGYlfM-qyO06kDmAeo2lHrt/view?usp=sharing. Previously I thought we had to share the project on a virtual machine because it was an intentionally vulnerable website, however a previous group had students git clone the repository and that worked fine. 
 
-Instructions: Inside WSL or a linux based terminal, enter 'git clone https://github.com/J-Mara/Cyber_Final.git' and go to the 'Cyber_Final' directory. Then create a virtual environment using 'python3 -m venv venv', type '. venv/bin/activate' to activate it, and type 'pip install -r requirements'. Finally, enter 'make', open firefox, and go to http://127.0.0.1:5000/login. 
+Instructions: Inside WSL or a linux based terminal, enter 'git clone https://github.com/MaretRA/Cybersecurity_Final.git' and go to the 'Cybersecurity_Final' directory. Then create a virtual environment using 'python3 -m venv venv', type '. venv/bin/activate' to activate it, and type 'pip install -r requirements.txt'. Finally, enter 'make', open firefox, and go to http://127.0.0.1:5000/login. 
+
+Reminder: The database table is named user, and the relevant columns are username and password. The two methods to sign into the adm account are:
+1. Creating an account and then copy pasting the hashed password into the adm account. 
+2. Deleting the adm account and then creating a new adm account with a password of your choice. 
+
+If you need help with reading the cookie information, check the slides, which contains step by step instructions.
 
 Assignment: Submit the result of the vigenere cipher (it is a link). 
 
